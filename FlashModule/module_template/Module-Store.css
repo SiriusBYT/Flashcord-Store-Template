@@ -1,0 +1,6 @@
+/* Edit this file if you don't like the default module layout or want to change the background image. */
+body {
+    background-color: #ffffff;
+    background-image: url(https://sirio-network.com/flashcord/hypernner.jpg);
+    background-size: cover;
+}

@@ -1,2 +1,6 @@
-# Flashcord-Module-Template
-The template to create your own Flashcord Module. 
+# Welcome to the Flashcord Module Template!
+This brand new template now gives more control to module devs!
+
+Please refer to the Flashcord Wiki to correctly use this template.
+
+## THIS IS A VERY WORK IN PROGRESS, PLEASE USE THE OLD TEMPLATE FOR NOW
