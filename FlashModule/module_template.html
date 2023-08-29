@@ -7,12 +7,13 @@
     <!-- SNWE Embed -->
     <meta content="Module Template - Flashcord Store" property="og:title" />
     <meta content="Module Description" property="og:description" />
-    <meta content="https://sirio-network.com/flashcord/store/module-template" property="og:url" />
-    <meta content="https://sirio-network.com/flashcord/store/module-template/banner.png" property="og:image" />
-    <meta content="#FFEEFF" data-react-helmet="true" name="theme-color" />
+    <meta content="https://sirio-network.com/flashcord/store/module_template" property="og:url" />
+    <meta content="https://sirio-network.com/flashcord/store/module_template/embed-banner.png" property="og:image" />
+    <meta content="#FF0000" data-react-helmet="true" name="theme-color" />
     <meta name="twitter:card" content="summary_large_image">
     <!-- SNWE External-->
-    <link rel="stylesheet" href="https://sirio-network.com/bin/SNDL-Flashcord.css">
+    <link rel="stylesheet" href="../../bin/SNDL-App.css">
+    <link rel="stylesheet" href="../../bin/SNDL-Flashcord.css">
     <link rel="stylesheet" href="module_template/Module-Store.css">
     <link rel="icon" type="image/x-icon" href="https://sirio-network.com/sbin/SGN-SNDL_FULL.png">
     <!-- SNWE Misc-->
@@ -24,10 +25,68 @@
     Welcome to your own Flashcord Module Store Page!
     You have the full creative liberty to modify this page if you don't like the stock layout.
     Notice: JavaScript is **NOT** ALLOWED.
+    You aren't allowed to fetch for external ressources. Everything must be inside your module_name folder.
  -->
 
 <body>
+<div class="FakeRoot">
+    <nav>
+        <img class="SNDL-Nav_Banner" src="../../sbin/SiriusBYT/SNDL-SiriusBYT.png"></img>
+        <div class="SNDL-Nav_Links">
+            <div class="SNDL-Nav_Link"><a href="../../youtube.html"><p>SiriusBYT</p><p>SBYT</p></a></div>
+            <div class="SNDL-Nav_Link"><a href="../../servers.html"><p>Sirio Game Network</p><p>SGN</p></a></div>
+            <div class="SNDL-Nav_Link"><a href="../../music.html"><p>Music</p><p>Music</p></a></div>
+            <div class="SNDL-Nav_Link"><a href="../store.html"><p>Flashcord</p><p>Flashcord</p></a></div>
+        </div>
+    </nav>
 
-<button class="SNDL-ReturnButton"><a href="https://sirio-network.com/flashcord/store">Return to the Store Page</a></button>
+    <div class="Userspace">
+        <div class="Flashcord-StoreSpace">
+            <div class="Flashcord-Store_Description">
+                <img class="Flashcord-Store_Banner" src="module_template/store-banner.png"></img>
+                <p>This is a <strong>non-functionning</strong> module. This is used to show a preview of how the new module template works.</p>
+                <p>For more information, check the <a href="https://github.com/SiriusBYT/flashcord/wiki/The-Flashcord-Module-Template"><strong><u>Flashcord wiki</u></strong></a>.</p>
+            </div>
+            <div class="Flashcord-Store_Header">
+                <div class="Flashcord-Module_Favicons">
+                    <h1>Module Template</h1>
+                    <a target="_blank" class="Flashcord-Module_Favicon" href="https://github.com/SiriusBYT/Flashcord-Module-Template"><h1>💿</h1></a>
+                </div>
+                <div class="Flashcord-Module_Favicons">
+                    <a target="_blank" href="https://github.com/SiriusBYT"><h2>SiriusBYT</h2></a>
+                    <a target="_blank" class="Flashcord-Module_Favicon" href="https://sirio-network.com/redirect/discord"><h2>💬</h2></a>
+                </div>
+
+                <h3>How to install this module:</h3>
+                <h4>🔌 Replugged</h4>
+                <p>Add the following line to your QuickCSS, below Flashcord's Import line.</p>
+                <div class="SNDL-CodeBlock">
+                    <p>@import url("https://sirio-network.com/flashcord/store/module_name/module.css")</p>
+                </div>
+                <p>And simply click the "Apply Changes" button.</p>
+
+                <h4>✨ Vencord</h4>
+                <p>Add the following url to your Local Theme's box.</p>
+                <div class="SNDL-CodeBlock">
+                    <p>https://sirio-network.com/flashcord/store/module_name/module.css</p>
+                </div>
+
+                <h4>🩹 BetterDiscord</h4>
+                <p>Add the following line to your QuickCSS, below Flashcord's Import line.</p>
+                <div class="SNDL-CodeBlock">
+                    <p>@import url("https://sirio-network.com/flashcord/store/module_name/module.css")</p>
+                </div>
+                <p>And simply click the Floppy Disk 💾 icon.</p>
+
+                <a target="_blank" href="https://github.com/SiriusBYT/Flashcord-Module-Template/blob/main/LICENSE.MD"><p class="SNDL-Copyright">SiriusBYT © 2023 - Module Template | Unlicense</p></a>
+            </div>
+        </div>
+
+        <div class="SNDL-Copyright">
+            <p>SiriusBYT © 2023 - Sirio Network Website | CC-BY-ND-NC 4.0</p>
+        </div>
+    </div>
+</div>
+
 
 </body>
