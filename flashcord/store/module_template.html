@@ -1,32 +1,65 @@
+<!-- 
+    Welcome to your own Flashcord Module Store Page!
+    You have the full creative liberty to modify this page if you don't like the stock layout.
+    Notice: JavaScript is **NOT** ALLOWED.
+    You aren't allowed to fetch for external ressources. Everything must be inside your module_name folder.
+
+    // Tip: Use VSCode's "Change all Occurences" to edit the following values:
+
+    // Module Name : Note to be careful to edit the correct name for the Github links to work.
+    Module Template 
+
+    // Module Description
+    Module Description
+    
+    // Module Developer: Note to be careful to edit the correct name for the Github links to work.
+    Module Developer
+
+    // Module License
+    Unlicense
+
+    // Module's Github Repository
+    https://github.com/ModuleRepo
+
+    // Your Github Profile
+    https://github.com/ModuleDev
+
+    // Module's Discord Server
+    https://discord.gg/
+
+    // Module's Folder name (MUST BE IN LOWERCASE, SPACES SHOULD BE UNDERSCORES)
+    module_template
+
+
+    // NOTICE: If you are publishing a plugin to the Flashcord Store, make sure to uncomment the section about installing your plugin.
+    // And of course, remove the lines about installing a Flashcord Module.
+
+    // Don't forget to edit embed.html after being done with this file!
+
+ -->
+
 <!doctype html>
 <head>
-    <title>Module Template - Flashcord Store</title>
+    <title>Module Template - Flashcord Store</title> <!-- EDIT THIS -->
     <!-- SNWE SEO -->
-    <meta name="description" content="Module Description">
-    <meta name="author" content="Module Dev Username">
+    <meta name="description" content="Module Description"> <!-- EDIT THIS -->
+    <meta name="author" content="Module Developer"> <!-- EDIT THIS -->
     <!-- SNWE Embed -->
-    <meta content="Module Template - Flashcord Store" property="og:title" />
-    <meta content="Module Description" property="og:description" />
-    <meta content="https://sirio-network.com/flashcord/store/module_template" property="og:url" />
-    <meta content="https://sirio-network.com/flashcord/store/module_template/embed-banner.png" property="og:image" />
-    <meta content="#FF0000" data-react-helmet="true" name="theme-color" />
+    <meta content="Module Template - Flashcord Store" property="og:title" /> <!-- EDIT THIS -->
+    <meta content="Module Description" property="og:description" /> <!-- EDIT THIS -->
+    <meta content="https://sirio-network.com/flashcord/store/module_template" property="og:url" /> <!-- EDIT THIS -->
+    <meta content="https://sirio-network.com/flashcord/store/module_template/embed-banner.png" property="og:image" /> <!-- EDIT THIS -->
+    <meta content="#FF0000" data-react-helmet="true" name="theme-color" /> <!-- EDIT THIS: OPTIONAL -->
     <meta name="twitter:card" content="summary_large_image">
     <!-- SNWE External-->
     <link rel="stylesheet" href="https://sirio-network.com/bin/SNDL-App.css">
     <link rel="stylesheet" href="https://sirio-network.com/bin/SNDL-Flashcord.css">
-    <link rel="stylesheet" href="module_template/Module-Store.css">
+    <link rel="stylesheet" href="module_template/Module-Store.css"> <!-- EDIT THIS -->
     <link rel="icon" type="image/x-icon" href="https://sirio-network.com/sbin/SGN-SNDL_FULL.png">
     <!-- SNWE Misc-->
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1">
 </head>
-
-<!--
-    Welcome to your own Flashcord Module Store Page!
-    You have the full creative liberty to modify this page if you don't like the stock layout.
-    Notice: JavaScript is **NOT** ALLOWED.
-    You aren't allowed to fetch for external ressources. Everything must be inside your module_name folder.
- -->
 
 <body>
 <div class="FakeRoot">
@@ -43,42 +76,49 @@
     <div class="Userspace">
         <div class="Flashcord-StoreSpace">
             <div class="Flashcord-Store_Description">
-                <img class="Flashcord-Store_Banner" src="module_template/store-banner.png"></img>
-                <p>This is a <strong>non-functionning</strong> module. This is used to show a preview of how the new module template works.</p>
-                <p>For more information, check the <a href="https://github.com/SiriusBYT/flashcord/wiki/The-Flashcord-Module-Template"><strong><u>Flashcord wiki</u></strong></a>.</p>
+                <img class="Flashcord-Store_Banner" src="module_template/store-banner.png"></img> <!-- EDIT THIS -->
+                <p>Module Description</p>
             </div>
             <div class="Flashcord-Store_Header">
                 <div class="Flashcord-Module_Favicons">
-                    <h1>Module Template</h1>
-                    <a target="_blank" class="Flashcord-Module_Favicon" href="https://github.com/SiriusBYT/Flashcord-Module-Template"><h1>💿</h1></a>
+                    <h1>Module Template</h1> <!-- EDIT THIS -->
+                    <a target="_blank" class="Flashcord-Module_Favicon" href="https://github.com/ModuleRepo"><h1>💿</h1></a> <!-- EDIT THIS -->
                 </div>
                 <div class="Flashcord-Module_Favicons">
-                    <a target="_blank" href="https://github.com/SiriusBYT"><h2>SiriusBYT</h2></a>
-                    <a target="_blank" class="Flashcord-Module_Favicon" href="https://sirio-network.com/redirect/discord"><h2>💬</h2></a>
+                    <a target="_blank" href="https://github.com/ModuleDev"><h2>Module Developer</h2></a> <!-- EDIT THIS -->
+                    <a target="_blank" class="Flashcord-Module_Favicon" href="https://discord.gg/"><h2>💬</h2></a> <!-- EDIT THIS -->
                 </div>
+
+                <!-- 
+
+                <h3>How to install this Plugin:</h3>
+                <h4>🔌 Replugged</h4>
+                <p>Click <strong><a href="https://replugged.dev/install?identifier=Module Developer/Module Template&source=github">here</a></strong> to install the plugin, your web browser will then communicate with your Replugged Client to install the plugin.</p>
+
+                -->
 
                 <h3>How to install this module:</h3>
                 <h4>🔌 Replugged</h4>
                 <p>Add the following line to your QuickCSS, below Flashcord's Import line.</p>
                 <div class="SNDL-CodeBlock">
-                    <p>@import url("https://sirio-network.com/flashcord/store/module_name/module.css")</p>
+                    <p>@import url("https://sirio-network.com/flashcord/store/module_name/module.css")</p> <!-- EDIT THIS -->
                 </div>
                 <p>And simply click the "Apply Changes" button.</p>
 
                 <h4>✨ Vencord</h4>
                 <p>Add the following url to your Local Theme's box.</p>
                 <div class="SNDL-CodeBlock">
-                    <p>https://sirio-network.com/flashcord/store/module_name/module.css</p>
+                    <p>https://sirio-network.com/flashcord/store/module_name/module.css</p> <!-- EDIT THIS -->
                 </div>
 
                 <h4>🩹 BetterDiscord</h4>
                 <p>Add the following line to your QuickCSS, below Flashcord's Import line.</p>
                 <div class="SNDL-CodeBlock">
-                    <p>@import url("https://sirio-network.com/flashcord/store/module_name/module.css")</p>
+                    <p>@import url("https://sirio-network.com/flashcord/store/module_name/module.css")</p> <!-- EDIT THIS -->
                 </div>
                 <p>And simply click the Floppy Disk 💾 icon.</p>
 
-                <a target="_blank" href="https://github.com/SiriusBYT/Flashcord-Module-Template/blob/main/LICENSE.MD"><p class="SNDL-Copyright">SiriusBYT © 2023 - Module Template | Unlicense</p></a>
+                <a target="_blank" href="https://github.com/ModuleRepo/blob/main/LICENSE.MD"><p class="SNDL-Copyright">Module Developer © 2023 - Module Template | Unlicense</p></a> <!-- EDIT THIS -->
             </div>
         </div>
 
