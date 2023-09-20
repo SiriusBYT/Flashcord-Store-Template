@@ -7,7 +7,7 @@ If you want to have a link to your module's store page, feel free to use the fol
 [<img src="https://sirio-network.com/flashcord/store/embed.png" width="512">](https://sirio-network.com/flashcord/store)
 
 # Page preview (Flashcord Module)
-![](https://sirio-network.com/flashcord/wiki/store-template/module-page_preview.png)
+![](https://sirio-network.com/flashcord/wiki/store-template/module-page_preview.png#)
 
 # Page preview (Replugged Plugin)
-![](https://sirio-network.com/flashcord/wiki/store-template/plugin-page_preview.png)
+![](https://sirio-network.com/flashcord/wiki/store-template/plugin-page_preview.png#)
