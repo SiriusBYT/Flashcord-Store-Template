@@ -1,4 +1,4 @@
-# Welcome to the Flashcord Module Template!
+# Welcome to the Flashcord Store Template!
 ## THIS IS A VERY WORK IN PROGRESS: THE DOCUMENTATION IS NOT DONE YET.
 
 Check out [The Flashcord Wiki](https://github.com/SiriusBYT/Flashcord/wiki/The-Flashcord-Module-Template) to understand how to use this template.
