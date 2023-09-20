@@ -4,7 +4,7 @@
 Check out [The Flashcord Wiki](https://github.com/SiriusBYT/Flashcord/wiki/The-Flashcord-Module-Template) to understand how to use this template.
 
 If you want to have a link to your module's store page, feel free to use the following image link.
-[<img src="https://sirio-network.com/flashcord/store/embed.png" width="512">](https://sirio-network.com/flashcord/store)
+[<img src="https://sirio-network.com/flashcord/ressources/store/embed.png" width="512">](https://sirio-network.com/flashcord/store)
 
 # Page preview (Flashcord Module)
 ![](https://sirio-network.com/flashcord/wiki/store-template/module-page_preview.png#)
