@@ -30,7 +30,7 @@ Embed_FileName = "embed-banner.jpg"
 Store_Embed_FileName = "embed-banner.jpg"
 
 def FlashcordStoreConfig():
-    print("[FlashCFG] - Backing up files...")
+    print("[FlashCFG] - Backing up store page files...")
     if IsPlugin == True:
         StoreHTML = "flashcord/store/plugins/" + Store_Page_Name
     else:
@@ -56,7 +56,7 @@ def FlashcordStoreConfig():
                 HTMLArray[line] = HTMLArray[line].replace("[LICENSE]", License)
                 HTMLArray[line] = HTMLArray[line].replace("[GITHUB_PROFILE]", GitHub_Profile)
                 HTMLArray[line] = HTMLArray[line].replace("[GITHUB_REPO]", GitHub_Repo)
-                HTMLArray[line] = HTMLArray[line].replace("[GITHUB_CONTRIBUTERS]", GitHub_Contributors)
+                HTMLArray[line] = HTMLArray[line].replace("[GITHUB_CONTRIBUTORS]", GitHub_Contributors)
                 HTMLArray[line] = HTMLArray[line].replace("[DISCORD_LINK]", Discord)
                 HTMLArray[line] = HTMLArray[line].replace("[THEME]", SNDL_Theme)
                 HTMLArray[line] = HTMLArray[line].replace("[EMBED_COLOR]", Embed_Color)
@@ -65,6 +65,44 @@ def FlashcordStoreConfig():
                 HTMLArray[line] = HTMLArray[line].replace("[STORE_EMBED_FILENAME]", Store_Embed_FileName)
                 StoreHTML_File.write(HTMLArray[line])
                 print('[FlashCGG] Processed Line is now "', HTMLArray[line], '".')
+
+        print("[FlashCFG] - Backing up embed page files...")
+        if IsPlugin == True:
+            EmbedHTML = "flashcord/store/plugins/" + Folder_Name + "embed.html"
+        else:
+            EmbedHTML = "flashcord/store/modules/" + Folder_Name + "embed.html"
+        EmbedHTML_Backup = EmbedHTML.replace(".html",".bak-html")
+        with open(EmbedHTML, 'r', encoding='utf-8') as EmbedHTML_File:
+            with open(EmbedHTML_Backup, 'w', encoding='utf-8') as EmbedHTML_Backup_File:
+                EmbedHTML_Backup_File.write((EmbedHTML_File.read()))
+
+        HTMLArray = []
+        print("[FlashCFG] - Quickly Configuring the Embed Page...")
+        with open(EmbedHTML_Backup, 'r', encoding='utf-8') as EmbedHTML_Backup_File:
+            with open(EmbedHTML, 'w', encoding='utf-8') as EmbedHTML_File:
+                EmbedHTML_File.write("")
+            with open(EmbedHTML, 'a', encoding='utf-8') as EmbedHTML_File:
+                HTMLArray = EmbedHTML_Backup_File.readlines()
+                for line in range (len(HTMLArray)):
+                    print('[FlashCGG] Processing Line"', line, '" which is "', HTMLArray[line], '".')
+                    HTMLArray[line] = HTMLArray[line].replace("[NAME]", Name)
+                    HTMLArray[line] = HTMLArray[line].replace("[SHORT_DESC]", Short_Description)
+                    HTMLArray[line] = HTMLArray[line].replace("[VERSION]", Version)
+                    HTMLArray[line] = HTMLArray[line].replace("[LICENSE]", License)
+                    HTMLArray[line] = HTMLArray[line].replace("[GITHUB_PROFILE]", GitHub_Profile)
+                    HTMLArray[line] = HTMLArray[line].replace("[GITHUB_REPO]", GitHub_Repo)
+                    HTMLArray[line] = HTMLArray[line].replace("[GITHUB_CONTRIBUTORS]", GitHub_Contributors)
+                    HTMLArray[line] = HTMLArray[line].replace("[DISCORD_LINK]", Discord)
+                    HTMLArray[line] = HTMLArray[line].replace("[THEME]", SNDL_Theme)
+                    HTMLArray[line] = HTMLArray[line].replace("[EMBED_COLOR]", Embed_Color)
+                    HTMLArray[line] = HTMLArray[line].replace("[FOLDER_NAME]", Folder_Name)
+                    HTMLArray[line] = HTMLArray[line].replace("[EMBED_FILENAME]", Embed_FileName)
+                    HTMLArray[line] = HTMLArray[line].replace("[STORE_EMBED_FILENAME]", Store_Embed_FileName)
+                    EmbedHTML_File.write(HTMLArray[line])
+                    print('[FlashCGG] Processed Line is now "', HTMLArray[line], '".')
+
+
+
     return
 
 FlashcordStoreConfig()
