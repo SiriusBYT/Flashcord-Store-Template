@@ -13,7 +13,9 @@ IsPlugin = False
 Name = "Epic Flashcord Module"
 Short_Description = "This module was created using the Flashcord Store Quick Config Python Script!"
 Version = "v6.9"
+License_Year = "2024"
 License = "License dz nuts"
+
 
 GitHub_Profile = "SiriusBYT"
 GitHub_Repo = "Flashcord"
@@ -25,8 +27,8 @@ Embed_Color = "#FF0000"
 
 Store_Page_Name = "module_template.html" # NO capitals! Underscores only! CANNOT HAVE "-files" AT THE END!
 Folder_Name = "module_template-files" # NO capitals! Underscores only! Must have "-files" at the end!
-Embed_FileName = "embed-banner.jpg"
-Store_Embed_FileName = "embed-banner.jpg"
+Embed_FileName = "embed-banner.png" # Notice: GIFs work!
+Store_Embed_FileName = "embed-banner.png" # I would still suggest against it due to AuraCloud-E2A's limited space.
 
 # This code is disgusting but it works, will optimize when I feel like it.
 def FlashcordStoreConfig():
@@ -53,6 +55,7 @@ def FlashcordStoreConfig():
                 HTMLArray[line] = HTMLArray[line].replace("[NAME]", Name)
                 HTMLArray[line] = HTMLArray[line].replace("[SHORT_DESC]", Short_Description)
                 HTMLArray[line] = HTMLArray[line].replace("[VERSION]", Version)
+                HTMLArray[line] = HTMLArray[line].replace("[LICENSE_YEAR]", License_Year)
                 HTMLArray[line] = HTMLArray[line].replace("[LICENSE]", License)
                 HTMLArray[line] = HTMLArray[line].replace("[GITHUB_PROFILE]", GitHub_Profile)
                 HTMLArray[line] = HTMLArray[line].replace("[GITHUB_REPO]", GitHub_Repo)
@@ -89,6 +92,7 @@ def FlashcordStoreConfig():
                     HTMLArray[line] = HTMLArray[line].replace("[NAME]", Name)
                     HTMLArray[line] = HTMLArray[line].replace("[SHORT_DESC]", Short_Description)
                     HTMLArray[line] = HTMLArray[line].replace("[VERSION]", Version)
+                    HTMLArray[line] = HTMLArray[line].replace("[LICENSE_YEAR]", License_Year)
                     HTMLArray[line] = HTMLArray[line].replace("[LICENSE]", License)
                     HTMLArray[line] = HTMLArray[line].replace("[GITHUB_PROFILE]", GitHub_Profile)
                     HTMLArray[line] = HTMLArray[line].replace("[GITHUB_REPO]", GitHub_Repo)
