@@ -1,10 +1,9 @@
 """
 This tool lets you quickly configure your page in a hurry.
-Currently does not work/untested. Please do not use in production.
-either way this does literally nothing rn lol cuz me lazy lul
+Read https://github.com/SiriusBYT/Flashcord/wiki/The-Flashcord-Store-Template for how this file works.
 
-This script does not do the following:
-- Configure long descriptions
+This script does not do the following and will never do it:
+- Configure long descriptions manually with SNDL (see MarkSNDL when it comes out if you can't be fucked learning SNDL, it will convert Markdown to SNDL's structure.)
 - Set "Other Modules by X" embeds
 """
 
