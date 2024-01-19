@@ -23,9 +23,9 @@ Discord = "https://discord.gg/404"
 SNDL_Theme = "Dark"
 Embed_Color = "#FF0000"
 
-Store_Page_Name = "module_name.html" # NO capitals! Underscores only! CANNOT HAVE "-files" AT THE END!
+Store_Page_Name = "module_template.html" # NO capitals! Underscores only! CANNOT HAVE "-files" AT THE END!
 
-Folder_Name = "module_name-files" # NO capitals! Underscores only! Must have "-files" at the end!
+Folder_Name = "module_template-files" # NO capitals! Underscores only! Must have "-files" at the end!
 Embed_FileName = "embed-banner.jpg"
 Store_Embed_FileName = "embed-banner.jpg"
 
