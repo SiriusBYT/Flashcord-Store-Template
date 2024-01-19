@@ -68,9 +68,9 @@ def FlashcordStoreConfig():
 
         print("[FlashCFG] - Backing up embed page files...")
         if IsPlugin == True:
-            EmbedHTML = "flashcord/store/plugins/" + Folder_Name + "embed.html"
+            EmbedHTML = "flashcord/store/plugins/" + Folder_Name + "/embed.html"
         else:
-            EmbedHTML = "flashcord/store/modules/" + Folder_Name + "embed.html"
+            EmbedHTML = "flashcord/store/modules/" + Folder_Name + "/embed.html"
         EmbedHTML_Backup = EmbedHTML.replace(".html",".bak-html")
         with open(EmbedHTML, 'r', encoding='utf-8') as EmbedHTML_File:
             with open(EmbedHTML_Backup, 'w', encoding='utf-8') as EmbedHTML_Backup_File:
