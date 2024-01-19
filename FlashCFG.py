@@ -24,11 +24,11 @@ SNDL_Theme = "Dark"
 Embed_Color = "#FF0000"
 
 Store_Page_Name = "module_template.html" # NO capitals! Underscores only! CANNOT HAVE "-files" AT THE END!
-
 Folder_Name = "module_template-files" # NO capitals! Underscores only! Must have "-files" at the end!
 Embed_FileName = "embed-banner.jpg"
 Store_Embed_FileName = "embed-banner.jpg"
 
+# This code is disgusting but it works, will optimize when I feel like it.
 def FlashcordStoreConfig():
     print("[FlashCFG] - Backing up store page files...")
     if IsPlugin == True:
@@ -60,6 +60,7 @@ def FlashcordStoreConfig():
                 HTMLArray[line] = HTMLArray[line].replace("[DISCORD_LINK]", Discord)
                 HTMLArray[line] = HTMLArray[line].replace("[THEME]", SNDL_Theme)
                 HTMLArray[line] = HTMLArray[line].replace("[EMBED_COLOR]", Embed_Color)
+                HTMLArray[line] = HTMLArray[line].replace("[STORE_PAGE_NAME]", Store_Page_Name)
                 HTMLArray[line] = HTMLArray[line].replace("[FOLDER_NAME]", Folder_Name)
                 HTMLArray[line] = HTMLArray[line].replace("[EMBED_FILENAME]", Embed_FileName)
                 HTMLArray[line] = HTMLArray[line].replace("[STORE_EMBED_FILENAME]", Store_Embed_FileName)
@@ -95,6 +96,7 @@ def FlashcordStoreConfig():
                     HTMLArray[line] = HTMLArray[line].replace("[DISCORD_LINK]", Discord)
                     HTMLArray[line] = HTMLArray[line].replace("[THEME]", SNDL_Theme)
                     HTMLArray[line] = HTMLArray[line].replace("[EMBED_COLOR]", Embed_Color)
+                    HTMLArray[line] = HTMLArray[line].replace("[STORE_PAGE_FILENAME]", Store_Page_Name)
                     HTMLArray[line] = HTMLArray[line].replace("[FOLDER_NAME]", Folder_Name)
                     HTMLArray[line] = HTMLArray[line].replace("[EMBED_FILENAME]", Embed_FileName)
                     HTMLArray[line] = HTMLArray[line].replace("[STORE_EMBED_FILENAME]", Store_Embed_FileName)

@@ -1,88 +1,66 @@
 <!-- 
-    Welcome to your own Flashcord Store Embed!
+    Welcome to your own Flashcord Store Page!
     You have the full creative liberty to modify this page if you don't like the stock layout.
-    You aren't allowed to fetch for external ressources. Everything must be inside your module_name folder.
+    You aren't allowed to fetch for external ressources. Everything must be inside your [FOLDER_NAME] folder.
     NO Javascript or anything of that matter is allowed, the SNWE website must be in pure HTML and CSS.
-
-    // Tip: Use VSCode's "Change all Occurences" to edit the following values:
-
-    // Module/Plugin's Full Name
-    Module Template
-
-    // Module/Plugin's GitHub Name
-    Module-Template
-
-    // This should be a short description of your module/plugin.
-    Module Short Description
+    You may use the Python Script to quickly get started, and then you may manually adjust your page.
+    Note: Modifying embed.html is generally not advised but you can do it.
     
-    // This must be your GitHub Username.
-    Module-Developer
+    // Flashcord Store Metadata
 
-    // If other people helped with the project (people who contributed),
-    modify the line about it here. Make sure to delete the whole <p> if you're not using this.
-    You can link each contributers' Github profile manually if you know a little bit of HTML.
-    Module-Contributer 1, Module-Contributer 2
+    [NAME]
+    [SHORT_DESC]
+    [VERSION]
+    [LICENSE]
 
-    // The version of your module/plugin
-    Version: v1.0.0
+    [GITHUB_PROFILE]
+    [GITHUB_REPO]
+    [GITHUB_CONTRIBUTORS]
 
-    // Module/Plugin License
-    Unlicense
+    [DISCORD_LINK]
+    [THEME]
+    [EMBED_COLOR]
 
-    // Your Github Profile, reachable by clicking your username.
-    https://github.com/ModuleDev
-
-    // Module's Discord Server, reachable with the 💬 Emoji
-    https://discord.gg/
-
-    // Module's Folder name (MUST BE IN LOWERCASE, SPACES SHOULD BE UNDERSCORES)
-    module_template
-
-    // The name of your Embed Banner
-    embed-banner.png
-
-    // NOTICE: If you are publishing a plugin to the Flashcord Store, make sure to uncomment the section about installing your plugin.
-    // And of course, remove the lines about installing a Flashcord Module.
-
-    // Don't forget to edit embed.html after being done with this file!
-
+    [STORE_PAGE_FILENAME]
+    [FOLDER_NAME]
+    [EMBED_FILENAME]
+    [STORE_EMBED_FILENAME]
  -->
 
-<!doctype html>
-<html>
-    <head>
-        <title>Module Template - Flashcord Store</title>
-        <!-- SNWE SEO -->
-        <meta name="description" content="Module Description">
-        <meta name="author" content="Module Developer">
-        <!-- SNWE External-->
-        <link rel="stylesheet" href="https://sirio-network.com/bin/SNDL-App_Base.css">
-        <link rel="stylesheet" href="https://sirio-network.com/bin/SNDL-App_Dark.css">
-        <link rel="stylesheet" href="https://sirio-network.com/bin/SNDL-Flashcord.css">
-        <link rel="stylesheet" href="embed.css">
-        <link rel="icon" type="image/x-icon" href="https://sirio-network.com/sbin/SGN-SNDL_FULL.png">
-        <!-- SNWE Misc-->
-        <meta charset="utf-8">
-        <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1">
-    </head>
-    <body>
-
-        <div class="Flashcord-Module">
-            <img class="Flashcord-Module_Banner" src="embed-banner.png"></img>
-            <div class="Flashcord-Module_Info">
-                <div class="SNDL-Quick_FlexGrid" style="justify-content: left;">
-                    <a target="_blank" href="../module_template.html"><h1>Module Template</h1></a>
-                    <a target="_blank" href="https://github.com/ModuleRepo"><h1>💿</h1></a>
-                </div>
-                <div class="SNDL-Quick_FlexGrid" style="justify-content: left;">
-                    <a target="_blank" href="https://github.com/ModuleDev"><h2>Module Developer</h2></a>
-                    <a target="_blank" href="https://discord.gg/"><h2>💬</h2></a>
-                </div>
-                <h5 style="margin-bottom: 8px;">Contributers: Module-Contributer 1, Module-Contributer 2</h5>
-                <h3 class="Flashcord-Module_Version">Version: v1.0.0</h3>
-                <p>Module Short Description</p>
-                <a target="_blank" href="https://github.com/ModuleRepo/blob/main/LICENSE.MD"><p class="SNDL-Copyright">Module Developer © 2023 - Module Template | Unlicense</p></a>
-            </div>
-        </div>
-    </body>
-</html>
+ <!doctype html>
+ <html class="SNDL-Dark">
+     <head>
+         <title>[NAME] - Flashcord Store</title>
+         <!-- SNWE SEO -->
+         <meta name="description" content="[SHORT_DESC]">
+         <meta name="author" content="[GITHUB_PROFILE]">
+         <!-- SNWE External-->
+         <link rel="stylesheet" href="https://sirio-network.com/bin/SNDL-App_Base.css">
+         <link rel="stylesheet" href="https://sirio-network.com/bin/SNDL-Flashcord.css">
+         <link rel="stylesheet" href="embed.css">
+         <link rel="icon" type="image/x-icon" href="https://sirio-network.com/sbin/SGN-SNDL_FULL.png">
+         <!-- SNWE Misc-->
+         <meta charset="utf-8">
+         <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1">
+     </head>
+     <body>
+ 
+         <div class="Flashcord-Module">
+             <img class="Flashcord-Module_Banner" src="[EMBED_FILENAME]"></img>
+             <div class="Flashcord-Module_Info">
+                 <div class="SNDL-Quick_FlexGrid" style="justify-content: left;">
+                     <a target="_blank" href="../[STORE_PAGE_FILENAME]"><h1>[NAME]</h1></a>
+                     <a target="_blank" href="https://github.com/[GITHUB_PROFILE]/[GITHUB_REPO]"><h1>💿</h1></a>
+                 </div>
+                 <div class="SNDL-Quick_FlexGrid" style="justify-content: left;">
+                     <a target="_blank" href="https://github.com/[GITHUB_PROFILE]/[GITHUB_REPO]"><h2>[GITHUB_PROFILE]</h2></a>
+                     <a target="_blank" href="[DISCORD_LINK]"><h2>💬</h2></a>
+                 </div>
+                 <h5 style="margin-bottom: 8px;">Contributers: [GITHUB_CONTRIBUTORS]</h5>
+                 <h3 class="Flashcord-Module_Version">Version: [VERSION]</h3>
+                 <p>[SHORT_DESC]</p>
+                 <a target="_blank" href="https://github.com/[GITHUB_PROFILE]/[GITHUB_REPO]/blob/main/LICENSE.MD"><p class="SNDL-Copyright">[GITHUB_PROFILE] © 2023 - [NAME] | [LICENSE]</p></a>
+             </div>
+         </div>
+     </body>
+ </html>
