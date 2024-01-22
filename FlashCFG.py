@@ -15,7 +15,7 @@ AllowAPI = True # Allows the script to connect to the SGN servers in order to ma
 
 Name = "FlashCFG-Built Store Template"
 Short_Description = "This store page was created using the Flashcord Store Quick Config Python Script!"
-Version = "v1.2.0"
+Version = "v1.2.1"
 License_Year = "2024"
 License = "Unlicense"
 
@@ -70,12 +70,11 @@ def GetEmbedCode():
     #print("DATA:",API_Folders)
     if API_Folders != None:
         API_Folders = API_Folders.replace("[","").replace("]","").replace('"','').split(",")
-        try:
-            API_Folders.remove(Folder_Name)
-        except:
-            DoNothing = ""
         for cycle in range (len(API_Folders)):
             API_Folders[cycle] = API_Folders[cycle] + "-files"
+        if Folder_Name in API_Folders:
+            API_Folders.remove(Folder_Name)
+        for cycle in range (len(API_Folders)):
             HTMLCode = HTMLCode + '<iframe class="Flashcord-Module_Embed" src="' + API_Folders[cycle] + '/embed.html"></iframe>\n'
     else:
         HTMLCode = HTMLCode + '<iframe class="Flashcord-Module_Embed" src="' + Folder_Name + '/embed.html"></iframe>\n'
