@@ -1,3 +1,4 @@
+import api
 """
 This tool lets you quickly configure your page in a hurry.
 Read https://github.com/SiriusBYT/Flashcord/wiki/The-Flashcord-Store-Template for how this file works.
@@ -7,12 +8,14 @@ This script does not do the following but will in the future:
 """
 
 # Edit the following things
-IsRepluggedPlugin = False
-IsFlashcordCompetitor = False # TBD, does absolutely nothing for now (Pages for Themes, yes the Flashcord store will... host themes other than Flashcord. This is a stupid idea which is why this isn't implemented yet and why I'm still just thinking about it.)
+isRepluggedPlugin = False
+isFlashcordCompetitor = False # TBD, does absolutely nothing for now (Pages for Themes, yes the Flashcord store will... host themes other than Flashcord. This is a stupid idea which is why this isn't implemented yet and why I'm still just thinking about it.)
+AllowAPI = True # Allows the script to connect to the SGN servers in order to make your store page more complete without user input
+
 
 Name = "FlashCFG-Built Store Template"
 Short_Description = "This store page was created using the Flashcord Store Quick Config Python Script!"
-Version = "v1.1.0"
+Version = "v1.2.0"
 License_Year = "2024"
 License = "Unlicense"
 
@@ -50,16 +53,44 @@ HTMLFile = ""
 # Don't touch this either. This will cause problems if your store page is for a Flashcord Module!
 UserFolderName = GitHub_Profile.lower()
 
+def GetEmbedCode():
+    HTMLCode = ''
+    API_Folders = []
+    def CallAPI():
+        if isRepluggedPlugin == True:
+            API_Request = "GET/" + "PLUGINS/" + GitHub_Profile.upper()
+        elif isFlashcordCompetitor == True:
+            API_Request = "GET/" + "THEMES/" + GitHub_Profile.upper()
+        else:
+            API_Request = "GET/" + "MODULES/" + GitHub_Profile.upper()
+        RequestResults = api.FlashClient_API_Request(API_Request)
+        return RequestResults
+    API_Folders = CallAPI()
+    #print("TYPE:",type(API_Folders))
+    #print("DATA:",API_Folders)
+    if API_Folders != None:
+        API_Folders = API_Folders.replace("[","").replace("]","").replace('"','').split(",")
+        try:
+            API_Folders.remove(Folder_Name)
+        except:
+            DoNothing = ""
+        for cycle in range (len(API_Folders)):
+            API_Folders[cycle] = API_Folders[cycle] + "-files"
+            HTMLCode = HTMLCode + '<iframe class="Flashcord-Module_Embed" src="' + API_Folders[cycle] + '/embed.html"></iframe>\n'
+    else:
+        HTMLCode = HTMLCode + '<iframe class="Flashcord-Module_Embed" src="' + Folder_Name + '/embed.html"></iframe>\n'
+    return HTMLCode
+
 # This code is disgusting but it works, will optimize when I feel like it.
 # NOTICE: this has ZERO error handling (or very little)! This is fucking horrible but I don't know yet how to do those and at the time of writing it's fucking 23h28
 def GetHTMLFile(FileConcerned):
     if FileConcerned == "Store Page":
-        if IsRepluggedPlugin == True:
+        if isRepluggedPlugin == True:
             File = "flashcord/store/plugins/" + GitHub_Profile.lower() + "/" + Store_Page_Name
         else:
             File = "flashcord/store/modules/" + GitHub_Profile.lower() + "/" + Store_Page_Name
     elif FileConcerned == "Embed":
-        if IsRepluggedPlugin == True:
+        if isRepluggedPlugin == True:
             File = "flashcord/store/plugins/" + GitHub_Profile.lower() + "/" + Folder_Name + "/embed.html"
         else:
             File = "flashcord/store/modules/" + GitHub_Profile.lower() + "/" + Folder_Name + "/embed.html"
@@ -98,6 +129,14 @@ def HTMLConfigurator(Step):
         print("[FlashCFG // HTML-CFG] ERROR: Sirius A was here and replaced Sirius B's Yae wallpaper with a Kirara one.", '(What the fuck is Step "', Step, '"?!)')
         return "FUCK"
 
+    if AllowAPI == True:
+        print('[FlashCFG // HTML-CFG] Connecting to SGN servers to fill the "More by" section...')
+        MoreByCode = GetEmbedCode() # NOTICE: Will phone to the SGN servers!
+        print(f'[FlashCFG // HTML-CFG] The "More by" section will have:\n{MoreByCode}')
+    else:
+        MoreByCode = '<iframe class="Flashcord-Module_Embed" src="' + Folder_Name + '/embed.html"></iframe>\n'
+    
+
     with open(StoreTemplate, 'r', encoding='utf-8') as StoreTemplate_File:
         with open(EmbedTemplate, 'r', encoding='utf-8') as EmbedTemplate_File:
             with open(HTMLFile, 'w', encoding='utf-8') as EditHTML_File:
@@ -130,6 +169,7 @@ def HTMLConfigurator(Step):
                     HTMLArray[line] = HTMLArray[line].replace("[EMBED_FILENAME]", Embed_FileName)
                     HTMLArray[line] = HTMLArray[line].replace("[STORE_EMBED_FILENAME]", Store_Embed_FileName)
                     HTMLArray[line] = HTMLArray[line].replace("[STORE_USER_FOLDER]", UserFolderName)
+                    HTMLArray[line] = HTMLArray[line].replace("[FLASHSTORE_API-EMBEDS]", MoreByCode)
                     EditHTML_File.write(HTMLArray[line])
                     ProcessingProgress = ((line+1)/len(HTMLArray))*100
                     print('[FlashCFG // HTML-CFG] Processed Line', line+1, '/', len(HTMLArray), '(', ProcessingProgress, '%).', StepFile)
