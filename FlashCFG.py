@@ -1,4 +1,4 @@
-import api
+from flashapi import * 
 """
 This tool lets you quickly configure your page in a hurry.
 Read https://github.com/SiriusBYT/Flashcord/wiki/The-Flashcord-Store-Template for how this file works.
@@ -63,7 +63,7 @@ def GetEmbedCode():
             API_Request = "GET/" + "THEMES/" + GitHub_Profile.upper()
         else:
             API_Request = "GET/" + "MODULES/" + GitHub_Profile.upper()
-        RequestResults = api.FlashClient_API_Request(API_Request)
+        RequestResults = FlashClient_API_Request(API_Request)
         return RequestResults
     API_Folders = CallAPI()
     #print("TYPE:",type(API_Folders))
