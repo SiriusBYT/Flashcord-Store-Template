@@ -15,7 +15,7 @@ AllowAPI = True # Allows the script to connect to the SGN servers in order to ma
 
 Name = "FlashCFG-Built Store Template"
 Short_Description = "This store page was created using the Flashcord Store Quick Config Python Script!"
-Version = "v1.2.1"
+Version = "v1.2.2"
 License_Year = "2024"
 License = "Unlicense"
 
@@ -163,7 +163,7 @@ def HTMLConfigurator(Step):
                     HTMLArray[line] = HTMLArray[line].replace("[DISCORD_LINK]", Discord)
                     HTMLArray[line] = HTMLArray[line].replace("[THEME]", SNDL_Theme)
                     HTMLArray[line] = HTMLArray[line].replace("[EMBED_COLOR]", Embed_Color)
-                    HTMLArray[line] = HTMLArray[line].replace("[STORE_PAGE_NAME]", Store_Page_Name)
+                    HTMLArray[line] = HTMLArray[line].replace("[STORE_PAGE_FILENAME]", Store_Page_Name)
                     HTMLArray[line] = HTMLArray[line].replace("[FOLDER_NAME]", Folder_Name)
                     HTMLArray[line] = HTMLArray[line].replace("[EMBED_FILENAME]", Embed_FileName)
                     HTMLArray[line] = HTMLArray[line].replace("[STORE_EMBED_FILENAME]", Store_Embed_FileName)
