@@ -28,10 +28,11 @@ with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG_JSON:
     isFlashcordCompetitor = FlashCFG_JSON["is_rptheme"]
     areIMGsFullLinks = FlashCFG_JSON["images_are_full_links"]
 
-    FlashCFG_JSON["internal_name"]
-    FlashCFG_JSON["discord_link"]
-    FlashCFG_JSON["sndl_theme"]
-    FlashCFG_JSON["embed_color"]
+    Folder_Name = f"{FlashCFG_JSON["internal_name"]}-files"
+    Store_Page_Name = f"{FlashCFG_JSON["internal_name"]}.html"
+    Discord = FlashCFG_JSON["discord_link"]
+    SNDL_Theme = FlashCFG_JSON["sndl_theme"]
+    Embed_Color = FlashCFG_JSON["embed_color"]
 
 
 
