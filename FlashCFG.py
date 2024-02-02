@@ -1,4 +1,6 @@
-from flashapi import * 
+from Flashstore_API_Client import * 
+import json 
+
 """
 This tool lets you quickly configure your page in a hurry.
 Read https://github.com/SiriusBYT/Flashcord/wiki/The-Flashcord-Store-Template for how this file works.
@@ -11,7 +13,8 @@ Then you can rename the generated JSON file to simply "FlashCFG.json" and THEN y
 # Edit the following things
 AllowAPI = True # Allows the script to connect to the SGN servers in order to make your store page more complete without user input
 
-with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG_JSON:
+with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG:
+    FlashCFG_JSON = json.load(FlashCFG)
     Name = FlashCFG_JSON["name"]
     Long_Description = FlashCFG_JSON["long_description"]
     Short_Description = FlashCFG_JSON["short_description"]
@@ -22,7 +25,7 @@ with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG_JSON:
     Store_Embed_FileName = FlashCFG_JSON["img_store"]
     Embed_FileName = FlashCFG_JSON["img_embed"]
     License = FlashCFG_JSON["license"]
-    License_Year =["license_year"]
+    License_Year = FlashCFG_JSON["license_year"]
 
     isRepluggedPlugin = FlashCFG_JSON["is_rpplugin"]
     isFlashcordCompetitor = FlashCFG_JSON["is_rptheme"]
@@ -34,10 +37,18 @@ with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG_JSON:
     SNDL_Theme = FlashCFG_JSON["sndl_theme"]
     Embed_Color = FlashCFG_JSON["embed_color"]
 
+    #print(f"DATA LOADED: {Name} \n{Long_Description}\n {Short_Description} {Version} {GitHub_Profile} {GitHub_Contributors} {GitHub_Repo} {Store_Embed_FileName} {Embed_FileName} {License} {License_Year} {isRepluggedPlugin} {isFlashcordCompetitor} {areIMGsFullLinks} {Folder_Name} {Store_Page_Name} {Discord} {SNDL_Theme} {Embed_Color}")
+
 
 
 # NOT recommended to modify, do this only if you know what you're doing! 
-StoreTemplate = "flashcord/store/templates/default/default-store_template.html"
+if isRepluggedPlugin == True: StoreTemplate = "flashcord/store/templates/default/default-plugin_template.html"
+elif isFlashcordCompetitor == True: StoreTemplate = "flashcord/store/templates/default/default-theme_template.html"
+else: StoreTemplate = "flashcord/store/templates/default/default-module_template.html"
+
+if areIMGsFullLinks == False:
+    Store_Banner = f"{Folder_Name}/{Store_Embed_FileName}"
+
 EmbedTemplate = "flashcord/store/templates/default/default-embed_template.html"
 # Don't touch this, it will get overwritten anyways but still. Don't touch just in case.
 HTMLFile = ""
@@ -51,21 +62,21 @@ def GetEmbedCode():
         if isRepluggedPlugin == True: API_Request = "GET/" + "PLUGINS/" + GitHub_Profile.upper()
         elif isFlashcordCompetitor == True: API_Request = "GET/" + "THEMES/" + GitHub_Profile.upper()
         else: API_Request = "GET/" + "MODULES/" + GitHub_Profile.upper()
-        RequestResults = FlashClient_API_Request(API_Request)
+        RequestResults = Flashcord_API_Client(API_Request)
         return RequestResults
     API_Folders = CallAPI()
     #print("TYPE:",type(API_Folders))
     #print("DATA:",API_Folders)
     if API_Folders != None:
-        API_Folders = API_Folders.replace("[","").replace("]","").replace('"','').split(",")
+        API_Folders = API_Folders.replace("[","").replace("]","").replace('"','').replace("'","").replace(' ','').split(",")
         for cycle in range (len(API_Folders)):
             API_Folders[cycle] = API_Folders[cycle] + "-files"
         if Folder_Name in API_Folders:
             API_Folders.remove(Folder_Name)
         for cycle in range (len(API_Folders)):
-            HTMLCode = HTMLCode + '<iframe class="Flashcord-Module_Embed" src="' + API_Folders[cycle] + '/embed.html"></iframe>\n'
+            HTMLCode = HTMLCode + f'<iframe class="Flashcord-Module_Embed" src="{API_Folders[cycle]}/embed.html"></iframe>\n'
     else:
-        HTMLCode = HTMLCode + '<iframe class="Flashcord-Module_Embed" src="' + Folder_Name + '/embed.html"></iframe>\n'
+        HTMLCode = HTMLCode + f'<iframe class="Flashcord-Module_Embed" src="{Folder_Name}/embed.html"></iframe>\n'
     return HTMLCode
 
 # This code is disgusting but it works, will optimize when I feel like it.
@@ -121,7 +132,7 @@ def HTMLConfigurator(Step):
         MoreByCode = GetEmbedCode() # NOTICE: Will phone to the SGN servers!
         print(f'[FlashCFG // HTML-CFG] The "More by" section will have:\n{MoreByCode}')
     else:
-        MoreByCode = '<iframe class="Flashcord-Module_Embed" src="' + Folder_Name + '/embed.html"></iframe>\n'
+        MoreByCode = f'<iframe class="Flashcord-Module_Embed" src="{Folder_Name}/embed.html"></iframe>\n'
     
 
     with open(StoreTemplate, 'r', encoding='utf-8') as StoreTemplate_File:
@@ -137,6 +148,26 @@ def HTMLConfigurator(Step):
                     print("[FlashCFG // HTML-CFG] WARNING: Sirius A was here and caused another Big Bang", '(What the fuck is Step "', Step, '"?!)')
                     print("[FlashCFG // HTML-CFG] Also how in the LIVING FUCK DID YOU TRIGGER THIS ERROR without triggering the previous one?")
                     return "FUCK"
+                # I can't be fucked optimizing the code yet so have this atrocity for the Long Description:
+                Long_Description = Long_Description.replace("[NAME]", Name)
+                Long_Description = Long_Description.replace("[SHORT_DESC]", Short_Description)
+                Long_Description = Long_Description.replace("[LONG_DESC]", Long_Description)
+                Long_Description = Long_Description.replace("[VERSION]", Version)
+                Long_Description = Long_Description.replace("[LICENSE_YEAR]", License_Year)
+                Long_Description = Long_Description.replace("[LICENSE]", License)
+                Long_Description = Long_Description.replace("[GITHUB_PROFILE]", GitHub_Profile)
+                Long_Description = Long_Description.replace("[GITHUB_REPO]", GitHub_Repo)
+                Long_Description = Long_Description.replace("[GITHUB_CONTRIBUTORS]", GitHub_Contributors)
+                Long_Description = Long_Description.replace("[DISCORD_LINK]", Discord)
+                Long_Description = Long_Description.replace("[THEME]", SNDL_Theme)
+                Long_Description = Long_Description.replace("[EMBED_COLOR]", Embed_Color)
+                Long_Description = Long_Description.replace("../[STORE_PAGE_FILENAME]", f"../{Store_Page_Name}")
+                Long_Description = Long_Description.replace("[FOLDER_NAME]", Folder_Name)
+                Long_Description = Long_Description.replace("[EMBED_FILENAME]", Embed_FileName)
+                Long_Description = Long_Description.replace("[STORE_BANNER]", Store_Banner)
+                Long_Description = Long_Description.replace("[STORE_USER_FOLDER]", UserFolderName)
+                Long_Description = Long_Description.replace("[FLASHSTORE_API-EMBEDS]", MoreByCode)
+
                 for line in range (len(HTMLArray)):
                     # print('[FlashCGG] Processing Line"', line, '" which is "', HTMLArray[line], '".')
                     HTMLArray[line] = HTMLArray[line].replace("[NAME]", Name)
@@ -151,10 +182,10 @@ def HTMLConfigurator(Step):
                     HTMLArray[line] = HTMLArray[line].replace("[DISCORD_LINK]", Discord)
                     HTMLArray[line] = HTMLArray[line].replace("[THEME]", SNDL_Theme)
                     HTMLArray[line] = HTMLArray[line].replace("[EMBED_COLOR]", Embed_Color)
-                    HTMLArray[line] = HTMLArray[line].replace("[STORE_PAGE_FILENAME]", Store_Page_Name)
+                    HTMLArray[line] = HTMLArray[line].replace("../[STORE_PAGE_FILENAME]", f"../{Store_Page_Name}")
                     HTMLArray[line] = HTMLArray[line].replace("[FOLDER_NAME]", Folder_Name)
                     HTMLArray[line] = HTMLArray[line].replace("[EMBED_FILENAME]", Embed_FileName)
-                    HTMLArray[line] = HTMLArray[line].replace("[STORE_EMBED_FILENAME]", Store_Embed_FileName)
+                    HTMLArray[line] = HTMLArray[line].replace("[STORE_BANNER]", Store_Banner)
                     HTMLArray[line] = HTMLArray[line].replace("[STORE_USER_FOLDER]", UserFolderName)
                     HTMLArray[line] = HTMLArray[line].replace("[FLASHSTORE_API-EMBEDS]", MoreByCode)
                     EditHTML_File.write(HTMLArray[line])
