@@ -44,14 +44,15 @@ def ManifestHooker():
     FlashCFG_JSON["version"] = Addon_Version
     FlashCFG_JSON["author"] = Addon_Author
     FlashCFG_JSON["contributors"] = Addon_Contributors
+    FlashCFG_JSON["github_repo"] = Addon_GitHubRepo
     FlashCFG_JSON["img_store"] = Addon_Image
     FlashCFG_JSON["img_embed"] = Addon_Image
     FlashCFG_JSON["license"] = Addon_License
     CTime = time.localtime()
     FlashCFG_JSON["license_year"] = str(CTime.tm_year)
 
-    FlashCFG_JSON["isplugin"] = isRepluggedPlugin
-    FlashCFG_JSON["istheme"] = isFlashcordCompetitor
+    FlashCFG_JSON["is_rpplugin"] = isRepluggedPlugin
+    FlashCFG_JSON["is_rptheme"] = isFlashcordCompetitor
     FlashCFG_JSON["images_are_full_links"] = True
 
     FlashCFG_JSON["internal_name"] = "change_this"
