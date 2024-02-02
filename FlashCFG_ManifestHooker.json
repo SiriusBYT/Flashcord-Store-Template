@@ -1,0 +1,19 @@
+{
+ "name": "Flashcord for Low-End Systems (LPM)",
+ "long_description": "<p>MAKE SURE TO REPLACE THIS AND ADD A LONG DESCRIPTION! Or yknow, copy paste the short description if you're that lazy.</p>",
+ "short_description": "[i] Read the Flashcord Wiki for more information. A nerfed/debloated version of Flashcord. This version is so debloated that even Windows debloaters are crying.",
+ "version": "LPM-240114",
+ "author": "SiriusBYT",
+ "contributors": "None",
+ "img_store": "https://sirio-network.com/flashcord/ressources/store/LPM-Main.gif",
+ "img_embed": "https://sirio-network.com/flashcord/ressources/store/LPM-Main.gif",
+ "license": "CC BY-NC-ND 4.0",
+ "license_year": "2024",
+ "isplugin": false,
+ "istheme": true,
+ "images_are_full_links": true,
+ "internal_name": "change_this",
+ "discord_link": "https://discord.com/CHANGE-THIS",
+ "sndl_theme": "Light",
+ "embed_color": "#00AAFF"
+}
