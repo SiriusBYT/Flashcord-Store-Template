@@ -145,7 +145,7 @@
                 
                 <!-- Insert the DIRECT URL of your other modules.-->
                 <div class="SNDL-Quick_FlexGrid SNDL-Contain_Light SNDL-Auto_Flex">
-                    <iframe class="Flashcord-Module_Embed" src="infinite_chat_effects-files/embed.html"></iframe>
+                    <iframe class="Flashcord-Module_Embed" src="infnite_chat_effects-files/embed.html"></iframe>
 <iframe class="Flashcord-Module_Embed" src="extended_chat_effects-files/embed.html"></iframe>
 
                 </div>
