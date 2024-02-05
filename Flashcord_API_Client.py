@@ -18,7 +18,7 @@ def Flashcord_API_Client(API_Request):
     Client_Version = "r240201"
     Client_API_Version = "3.0"
 
-    ASCII_Banner = "░█▀▀░█░░░█▀█░█▀▀░█░█░█▀▀░█▀█░█▀▄░█▀▄░░░█▀█░█▀█░▀█▀░░░█▀▀░█░░░▀█▀░█▀▀░█▀█░▀█▀\n\
+    ASCII_Banner = "\n░█▀▀░█░░░█▀█░█▀▀░█░█░█▀▀░█▀█░█▀▄░█▀▄░░░█▀█░█▀█░▀█▀░░░█▀▀░█░░░▀█▀░█▀▀░█▀█░▀█▀\n\
 ░█▀▀░█░░░█▀█░▀▀█░█▀█░█░░░█░█░█▀▄░█░█░░░█▀█░█▀▀░░█░░░░█░░░█░░░░█░░█▀▀░█░█░░█░\n\
 ░▀░░░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀░░░░▀░▀░▀░░░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀░"
     """
@@ -65,6 +65,7 @@ def Flashcord_API_Client(API_Request):
     try: Send(Client_API_Version); Server_Data = Receive_Data()
     except Exception as Error_Info: WriteLog(f'[ERROR] Failed to send Client API Version to the server! \n[ERROR TRACEBACK]\n{Error_Info}", False)',False); return "TIMEOUT"
     match Server_Data:
+        case "API_BANNED": WriteLog(f"[ERROR] You have been banned from using the Flashcord API.", True); return "API_BANNED"
         case "INVALID_VERSION": WriteLog(f'[ERROR] The server told us our API Version is invalid!', False); return "INVALID_VERSION"
         case "OUTDATED_VERSION": WriteLog(f'[ERROR] The server told us our API Version is out of date!', False); return "OUTDATED_VERSION"
         case "ALREADY_CONNECTED": WriteLog(f"[ERROR] The server told us we're already connected to it!", False); return "ALREADY_CONNECTED"
@@ -81,3 +82,21 @@ def Flashcord_API_Client(API_Request):
             case "": WriteLog(f"[ERROR] The server sent us an empty response!",False); return "EMPTY_RESPONSE"
             case _: WriteLog(f'[SUCCESS] Received {Server_Data} for our request!',False); return Server_Data
     except Exception as Error_Info: WriteLog(f'[ERROR] Failed to send our API request! \n[ERROR TRACEBACK]\n{Error_Info}", False)',False); return "TIMEOUT"
+    
+
+
+#Flashcord_API_Client("GET/SPLASH_TEXT")
+Flashcord_API_Client("ADD_STAT/VIEWS/infinite_chat_effects")
+Flashcord_API_Client("GET/VIEWS/infinite_chat_effects")
+#Flashcord_API_Client("GET")
+#Flashcord_API_Client("GET/MODULES")
+#Flashcord_API_Client("GET/MODULES/SIRIUSBYT")
+#Flashcord_API_Client("GET/MODULES/SiriusBYT")
+#Flashcord_API_Client("GET/PLUGINS")
+#Flashcord_API_Client("GET/THEMES")
+#Flashcord_API_Client("GET/USERS")
+#Flashcord_API_Client("GET/SERVER_VERSION")
+#Flashcord_API_Client("GET/API_VERSION")
+#Flashcord_API_Client("GET/ERROR")
+#Flashcord_API_Client("GETERROR")
+#Flashcord_API_Client("GET/MODULES/NOTFOUND")

@@ -1,4 +1,4 @@
-from Flashstore_API_Client import * 
+from Flashcord_API_Client import * 
 import json 
 
 """
