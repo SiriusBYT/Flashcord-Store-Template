@@ -162,7 +162,7 @@ def HTMLConfigurator(Step):
                     HTMLArray[line] = HTMLArray[line].replace("[LICENSE]", License)
                     HTMLArray[line] = HTMLArray[line].replace("[GITHUB_PROFILE]", GitHub_Profile)
                     HTMLArray[line] = HTMLArray[line].replace("[GITHUB_REPO]", GitHub_Repo)
-                    HTMLArray[line] = HTMLArray[line].replace("[GITHUB_REPO_ID]", GitHub_RepoID)
+                    HTMLArray[line] = HTMLArray[line].replace("[GITHUB_REPO-ID]", GitHub_RepoID)
                     HTMLArray[line] = HTMLArray[line].replace("[GITHUB_CONTRIBUTORS]", GitHub_Contributors)
                     HTMLArray[line] = HTMLArray[line].replace("[DISCORD_LINK]", Discord)
                     HTMLArray[line] = HTMLArray[line].replace("[THEME]", SNDL_Theme)
