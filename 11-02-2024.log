@@ -1,0 +1,62 @@
+[13:09:14] IridescentSky-Alpha:1407@API_3.0 w/ Client r240201 // Debug: True - Packet Size: 1024b
+
+[13:09:16] ERROR: Failed to connect to the Flashstore API! 
+[ERROR TRACEBACK]
+[WinError 10061] No connection could be made because the target machine actively refused it
+[13:09:16] IridescentSky-Alpha:1407@API_3.0 w/ Client r240201 // Debug: True - Packet Size: 1024b
+
+[13:09:18] ERROR: Failed to connect to the Flashstore API! 
+[ERROR TRACEBACK]
+[WinError 10061] No connection could be made because the target machine actively refused it
+[13:09:18] IridescentSky-Alpha:1407@API_3.0 w/ Client r240201 // Debug: True - Packet Size: 1024b
+
+[13:09:20] ERROR: Failed to connect to the Flashstore API! 
+[ERROR TRACEBACK]
+[WinError 10061] No connection could be made because the target machine actively refused it
+[13:10:17] IridescentSky-Alpha:1407@API_3.0 w/ Client r240201 // Debug: True - Packet Size: 1024b
+
+[13:10:19] ERROR: Failed to connect to the Flashstore API! 
+[ERROR TRACEBACK]
+[WinError 10061] No connection could be made because the target machine actively refused it
+[13:12:32] raw_api.sirio-network.com:1407@API_3.0 w/ Client r240201 // Debug: True - Packet Size: 1024b
+
+[13:12:32] SUCCESS: Connected to raw_api.sirio-network.com:1407! (Latency: 0ms)
+[13:12:32] INFO: Requesting API Version 3.0...
+[13:12:32] [OK] We sent a valid API Version.
+[13:12:32] INFO: Requesting "GET/MODULES/SIRIUSBYT".
+[13:12:32] [SUCCESS] Received ['infinite_chat_effects', 'extended_chat_effects'] for our request!
+[13:12:36] raw_api.sirio-network.com:1407@API_3.0 w/ Client r240201 // Debug: True - Packet Size: 1024b
+
+[13:12:36] SUCCESS: Connected to raw_api.sirio-network.com:1407! (Latency: 0ms)
+[13:12:36] INFO: Requesting API Version 3.0...
+[13:12:36] [OK] We sent a valid API Version.
+[13:12:36] INFO: Requesting "GET/MODULES/SIRIUSBYT".
+[13:12:36] [SUCCESS] Received ['infinite_chat_effects', 'extended_chat_effects'] for our request!
+[13:13:27] raw_api.sirio-network.com:1407@API_3.0 w/ Client r240201 // Debug: True - Packet Size: 1024b
+
+[13:13:27] SUCCESS: Connected to raw_api.sirio-network.com:1407! (Latency: 0ms)
+[13:13:27] INFO: Requesting API Version 3.0...
+[13:13:27] [OK] We sent a valid API Version.
+[13:13:27] INFO: Requesting "GET/MODULES/SIRIUSBYT".
+[13:13:27] [SUCCESS] Received ['infinite_chat_effects', 'extended_chat_effects'] for our request!
+[13:13:27] raw_api.sirio-network.com:1407@API_3.0 w/ Client r240201 // Debug: True - Packet Size: 1024b
+
+[13:13:27] SUCCESS: Connected to raw_api.sirio-network.com:1407! (Latency: 0ms)
+[13:13:27] INFO: Requesting API Version 3.0...
+[13:13:27] [OK] We sent a valid API Version.
+[13:13:27] INFO: Requesting "GET/MODULES/SIRIUSBYT".
+[13:13:27] [SUCCESS] Received ['infinite_chat_effects', 'extended_chat_effects'] for our request!
+[13:18:11] raw_api.sirio-network.com:1407@API_3.0 w/ Client r240201 // Debug: True - Packet Size: 1024b
+
+[13:18:11] SUCCESS: Connected to raw_api.sirio-network.com:1407! (Latency: 0ms)
+[13:18:11] INFO: Requesting API Version 3.0...
+[13:18:11] [OK] We sent a valid API Version.
+[13:18:11] INFO: Requesting "GET/MODULES/SIRIUSBYT".
+[13:18:11] [SUCCESS] Received ['infinite_chat_effects', 'extended_chat_effects'] for our request!
+[13:18:11] raw_api.sirio-network.com:1407@API_3.0 w/ Client r240201 // Debug: True - Packet Size: 1024b
+
+[13:18:11] SUCCESS: Connected to raw_api.sirio-network.com:1407! (Latency: 0ms)
+[13:18:11] INFO: Requesting API Version 3.0...
+[13:18:11] [OK] We sent a valid API Version.
+[13:18:11] INFO: Requesting "GET/MODULES/SIRIUSBYT".
+[13:18:11] [SUCCESS] Received ['infinite_chat_effects', 'extended_chat_effects'] for our request!

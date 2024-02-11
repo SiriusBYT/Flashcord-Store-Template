@@ -37,6 +37,9 @@ with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG:
     SNDL_Theme = FlashCFG_JSON["sndl_theme"]
     Embed_Color = FlashCFG_JSON["embed_color"]
 
+    GitHub_RepoID = GitHub_Repo.split("/")
+    GitHub_RepoID = GitHub_RepoID[-1]
+
     #print(f"DATA LOADED: {Name} \n{Long_Description}\n {Short_Description} {Version} {GitHub_Profile} {GitHub_Contributors} {GitHub_Repo} {Store_Embed_FileName} {Embed_FileName} {License} {License_Year} {isRepluggedPlugin} {isFlashcordCompetitor} {areIMGsFullLinks} {Folder_Name} {Store_Page_Name} {Discord} {SNDL_Theme} {Embed_Color}")
 
 
@@ -148,25 +151,6 @@ def HTMLConfigurator(Step):
                     print("[FlashCFG // HTML-CFG] WARNING: Sirius A was here and caused another Big Bang", '(What the fuck is Step "', Step, '"?!)')
                     print("[FlashCFG // HTML-CFG] Also how in the LIVING FUCK DID YOU TRIGGER THIS ERROR without triggering the previous one?")
                     return "FUCK"
-                # I can't be fucked optimizing the code yet so have this atrocity for the Long Description:
-                Long_Description = Long_Description.replace("[NAME]", Name)
-                Long_Description = Long_Description.replace("[SHORT_DESC]", Short_Description)
-                Long_Description = Long_Description.replace("[LONG_DESC]", Long_Description)
-                Long_Description = Long_Description.replace("[VERSION]", Version)
-                Long_Description = Long_Description.replace("[LICENSE_YEAR]", License_Year)
-                Long_Description = Long_Description.replace("[LICENSE]", License)
-                Long_Description = Long_Description.replace("[GITHUB_PROFILE]", GitHub_Profile)
-                Long_Description = Long_Description.replace("[GITHUB_REPO]", GitHub_Repo)
-                Long_Description = Long_Description.replace("[GITHUB_CONTRIBUTORS]", GitHub_Contributors)
-                Long_Description = Long_Description.replace("[DISCORD_LINK]", Discord)
-                Long_Description = Long_Description.replace("[THEME]", SNDL_Theme)
-                Long_Description = Long_Description.replace("[EMBED_COLOR]", Embed_Color)
-                Long_Description = Long_Description.replace("../[STORE_PAGE_FILENAME]", f"../{Store_Page_Name}")
-                Long_Description = Long_Description.replace("[FOLDER_NAME]", Folder_Name)
-                Long_Description = Long_Description.replace("[EMBED_FILENAME]", Embed_FileName)
-                Long_Description = Long_Description.replace("[STORE_BANNER]", Store_Banner)
-                Long_Description = Long_Description.replace("[STORE_USER_FOLDER]", UserFolderName)
-                Long_Description = Long_Description.replace("[FLASHSTORE_API-EMBEDS]", MoreByCode)
 
                 for line in range (len(HTMLArray)):
                     # print('[FlashCGG] Processing Line"', line, '" which is "', HTMLArray[line], '".')
@@ -178,6 +162,7 @@ def HTMLConfigurator(Step):
                     HTMLArray[line] = HTMLArray[line].replace("[LICENSE]", License)
                     HTMLArray[line] = HTMLArray[line].replace("[GITHUB_PROFILE]", GitHub_Profile)
                     HTMLArray[line] = HTMLArray[line].replace("[GITHUB_REPO]", GitHub_Repo)
+                    HTMLArray[line] = HTMLArray[line].replace("[GITHUB_REPO_ID]", GitHub_RepoID)
                     HTMLArray[line] = HTMLArray[line].replace("[GITHUB_CONTRIBUTORS]", GitHub_Contributors)
                     HTMLArray[line] = HTMLArray[line].replace("[DISCORD_LINK]", Discord)
                     HTMLArray[line] = HTMLArray[line].replace("[THEME]", SNDL_Theme)

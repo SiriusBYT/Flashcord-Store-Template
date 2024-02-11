@@ -5,13 +5,13 @@ import math
 def Flashcord_API_Client(API_Request):
     Request_Start = time.time()
     Debug_Mode = True
-    Debug_Offline = True
+    Debug_Offline = False
 
     # Server & Client Information
     if Debug_Offline == True:
         Server_Address = socket.gethostname()
     else:
-        Server_Address = "aura-two.sirio-network.com"
+        Server_Address = "raw_api.sirio-network.com"
     Server_Port = 1407
     Packet_Size = 1024
     Server = socket.socket()
@@ -82,21 +82,3 @@ def Flashcord_API_Client(API_Request):
             case "": WriteLog(f"[ERROR] The server sent us an empty response!",False); return "EMPTY_RESPONSE"
             case _: WriteLog(f'[SUCCESS] Received {Server_Data} for our request!',False); return Server_Data
     except Exception as Error_Info: WriteLog(f'[ERROR] Failed to send our API request! \n[ERROR TRACEBACK]\n{Error_Info}", False)',False); return "TIMEOUT"
-    
-
-
-#Flashcord_API_Client("GET/SPLASH_TEXT")
-Flashcord_API_Client("ADD_STAT/VIEWS/infinite_chat_effects")
-Flashcord_API_Client("GET/VIEWS/infinite_chat_effects")
-#Flashcord_API_Client("GET")
-#Flashcord_API_Client("GET/MODULES")
-#Flashcord_API_Client("GET/MODULES/SIRIUSBYT")
-#Flashcord_API_Client("GET/MODULES/SiriusBYT")
-#Flashcord_API_Client("GET/PLUGINS")
-#Flashcord_API_Client("GET/THEMES")
-#Flashcord_API_Client("GET/USERS")
-#Flashcord_API_Client("GET/SERVER_VERSION")
-#Flashcord_API_Client("GET/API_VERSION")
-#Flashcord_API_Client("GET/ERROR")
-#Flashcord_API_Client("GETERROR")
-#Flashcord_API_Client("GET/MODULES/NOTFOUND")
