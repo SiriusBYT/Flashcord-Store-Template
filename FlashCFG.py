@@ -1,55 +1,60 @@
-from flashapi import * 
+from Flashcord_API_Client import * 
+import json 
+
 """
 This tool lets you quickly configure your page in a hurry.
 Read https://github.com/SiriusBYT/Flashcord/wiki/The-Flashcord-Store-Template for how this file works.
 
-This script does not do the following but will in the future:
-- Set "Other Modules by X" embeds automatically (A long time later! Requires internet & communication to sirio-network.com)
+WARNING: If you are quickly generating a page from a Replugged Addon's manifest JSON,
+Make SURE to first run "ManifestHooker.py" and then manually verify the information inside the generated "FlashCFG_ManifestHooker.json" file.
+Then you can rename the generated JSON file to simply "FlashCFG.json" and THEN you can ultimately finally run this script.
 """
 
 # Edit the following things
-isRepluggedPlugin = False
-isFlashcordCompetitor = False # TBD, does absolutely nothing for now (Pages for Themes, yes the Flashcord store will... host themes other than Flashcord. This is a stupid idea which is why this isn't implemented yet and why I'm still just thinking about it.)
 AllowAPI = True # Allows the script to connect to the SGN servers in order to make your store page more complete without user input
 
+with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG:
+    FlashCFG_JSON = json.load(FlashCFG)
+    Name = FlashCFG_JSON["name"]
+    Long_Description = FlashCFG_JSON["long_description"]
+    Short_Description = FlashCFG_JSON["short_description"]
+    Version = FlashCFG_JSON["version"]
+    GitHub_Profile = FlashCFG_JSON["author"]
+    GitHub_Contributors = FlashCFG_JSON["contributors"]
+    GitHub_Repo = FlashCFG_JSON["github_repo"]
+    Store_Embed_FileName = FlashCFG_JSON["img_store"]
+    Embed_FileName = FlashCFG_JSON["img_embed"]
+    License = FlashCFG_JSON["license"]
+    License_Year = FlashCFG_JSON["license_year"]
 
-Name = "FlashCFG-Built Store Template"
-Short_Description = "This store page was created using the Flashcord Store Quick Config Python Script!"
-Version = "v1.2.2"
-License_Year = "2024"
-License = "Unlicense"
+    isRepluggedPlugin = FlashCFG_JSON["is_rpplugin"]
+    isFlashcordCompetitor = FlashCFG_JSON["is_rptheme"]
+    areIMGsFullLinks = FlashCFG_JSON["images_are_full_links"]
+
+    Folder_Name = f"{FlashCFG_JSON["internal_name"]}-files"
+    Store_Page_Name = f"{FlashCFG_JSON["internal_name"]}.html"
+    Discord = FlashCFG_JSON["discord_link"]
+    SNDL_Theme = FlashCFG_JSON["sndl_theme"]
+    Embed_Color = FlashCFG_JSON["embed_color"]
+
+    GitHub_RepoID = GitHub_Repo.split("/")
+    GitHub_RepoID = GitHub_RepoID[-1]
+
+    #print(f"DATA LOADED: {Name} \n{Long_Description}\n {Short_Description} {Version} {GitHub_Profile} {GitHub_Contributors} {GitHub_Repo} {Store_Embed_FileName} {Embed_FileName} {License} {License_Year} {isRepluggedPlugin} {isFlashcordCompetitor} {areIMGsFullLinks} {Folder_Name} {Store_Page_Name} {Discord} {SNDL_Theme} {Embed_Color}")
 
 
-GitHub_Profile = "SiriusBYT" # Notice: this will be converted to lowercase and will be your folder name after modules/plugins
-GitHub_Repo = "Flashcord-Store-Template" 
-GitHub_Contributors = "SiriusBYT"
-
-Discord = "https://discord.gg/z93kHwGuZt"
-SNDL_Theme = "Light"
-Embed_Color = "#FF69FF"
-
-Store_Page_Name = "module_template.html" # NO capitals! Underscores only! CANNOT HAVE "-files" AT THE END!
-Folder_Name = "module_template-files" # NO capitals! Underscores only! Must have "-files" at the end!
-Embed_FileName = "embed-banner.png" # Notice: GIFs work!
-Store_Embed_FileName = "embed-banner.png" # I would still suggest against it due to AuraCloud-E2A's limited space.
-
-Long_Description = '<p>Long descriptions are actually quite the doozy, they require actual HTML code to be set inside this little variable. \n \
-While quite impractical looking, it lets you entirely skip the manual process of opening your Store Page HTML ENTIRELY!</p> \n \
-<p class="SNDL-ParenthesizedText">This has limitations though... Of course...</p> \n \
-<p>You obviously need HTML and SNDL knowledge if you wanna make this look as nice as possible.</p> \n \
-<p>But of course since this is just a python variable inserted into HTML code that means that yes, you can:</p> \n \
-<div class="SNDL-DashList"> \n \
-    <p>Create certain parts of your long description to have parts of your module/plugin info update itself when you rebuild your Store page! For example this is version ' + Version + ' of FlashCFG that built this page!</p> \n \
-    <p>And you can probably do a lot more but since I ran out of ideas, well you go figure it out yourself.</p> \n \
-</div>'
 
 # NOT recommended to modify, do this only if you know what you're doing! 
-StoreTemplate = "flashcord/store/templates/default/default-store_template.html"
-EmbedTemplate = "flashcord/store/templates/default/default-embed_template.html"
+if isRepluggedPlugin == True: StoreTemplate = "flashcord/store/templates/default/default-plugin_template.html"
+elif isFlashcordCompetitor == True: StoreTemplate = "flashcord/store/templates/default/default-theme_template.html"
+else: StoreTemplate = "flashcord/store/templates/default/default-module_template.html"
 
+if areIMGsFullLinks == False:
+    Store_Banner = f"{Folder_Name}/{Store_Embed_FileName}"
+
+EmbedTemplate = "flashcord/store/templates/default/default-embed_template.html"
 # Don't touch this, it will get overwritten anyways but still. Don't touch just in case.
 HTMLFile = ""
-
 # Don't touch this either. This will cause problems if your store page is for a Flashcord Module!
 UserFolderName = GitHub_Profile.lower()
 
@@ -57,27 +62,24 @@ def GetEmbedCode():
     HTMLCode = ''
     API_Folders = []
     def CallAPI():
-        if isRepluggedPlugin == True:
-            API_Request = "GET/" + "PLUGINS/" + GitHub_Profile.upper()
-        elif isFlashcordCompetitor == True:
-            API_Request = "GET/" + "THEMES/" + GitHub_Profile.upper()
-        else:
-            API_Request = "GET/" + "MODULES/" + GitHub_Profile.upper()
-        RequestResults = FlashClient_API_Request(API_Request)
+        if isRepluggedPlugin == True: API_Request = "GET/" + "PLUGINS/" + GitHub_Profile.upper()
+        elif isFlashcordCompetitor == True: API_Request = "GET/" + "THEMES/" + GitHub_Profile.upper()
+        else: API_Request = "GET/" + "MODULES/" + GitHub_Profile.upper()
+        RequestResults = Flashcord_API_Client(API_Request)
         return RequestResults
     API_Folders = CallAPI()
     #print("TYPE:",type(API_Folders))
     #print("DATA:",API_Folders)
     if API_Folders != None:
-        API_Folders = API_Folders.replace("[","").replace("]","").replace('"','').split(",")
+        API_Folders = API_Folders.replace("[","").replace("]","").replace('"','').replace("'","").replace(' ','').split(",")
         for cycle in range (len(API_Folders)):
             API_Folders[cycle] = API_Folders[cycle] + "-files"
         if Folder_Name in API_Folders:
             API_Folders.remove(Folder_Name)
         for cycle in range (len(API_Folders)):
-            HTMLCode = HTMLCode + '<iframe class="Flashcord-Module_Embed" src="' + API_Folders[cycle] + '/embed.html"></iframe>\n'
+            HTMLCode = HTMLCode + f'<iframe class="Flashcord-Module_Embed" src="{API_Folders[cycle]}/embed.html"></iframe>\n'
     else:
-        HTMLCode = HTMLCode + '<iframe class="Flashcord-Module_Embed" src="' + Folder_Name + '/embed.html"></iframe>\n'
+        HTMLCode = HTMLCode + f'<iframe class="Flashcord-Module_Embed" src="{Folder_Name}/embed.html"></iframe>\n'
     return HTMLCode
 
 # This code is disgusting but it works, will optimize when I feel like it.
@@ -133,7 +135,7 @@ def HTMLConfigurator(Step):
         MoreByCode = GetEmbedCode() # NOTICE: Will phone to the SGN servers!
         print(f'[FlashCFG // HTML-CFG] The "More by" section will have:\n{MoreByCode}')
     else:
-        MoreByCode = '<iframe class="Flashcord-Module_Embed" src="' + Folder_Name + '/embed.html"></iframe>\n'
+        MoreByCode = f'<iframe class="Flashcord-Module_Embed" src="{Folder_Name}/embed.html"></iframe>\n'
     
 
     with open(StoreTemplate, 'r', encoding='utf-8') as StoreTemplate_File:
@@ -149,6 +151,7 @@ def HTMLConfigurator(Step):
                     print("[FlashCFG // HTML-CFG] WARNING: Sirius A was here and caused another Big Bang", '(What the fuck is Step "', Step, '"?!)')
                     print("[FlashCFG // HTML-CFG] Also how in the LIVING FUCK DID YOU TRIGGER THIS ERROR without triggering the previous one?")
                     return "FUCK"
+
                 for line in range (len(HTMLArray)):
                     # print('[FlashCGG] Processing Line"', line, '" which is "', HTMLArray[line], '".')
                     HTMLArray[line] = HTMLArray[line].replace("[NAME]", Name)
@@ -159,14 +162,15 @@ def HTMLConfigurator(Step):
                     HTMLArray[line] = HTMLArray[line].replace("[LICENSE]", License)
                     HTMLArray[line] = HTMLArray[line].replace("[GITHUB_PROFILE]", GitHub_Profile)
                     HTMLArray[line] = HTMLArray[line].replace("[GITHUB_REPO]", GitHub_Repo)
+                    HTMLArray[line] = HTMLArray[line].replace("[GITHUB_REPO-ID]", GitHub_RepoID)
                     HTMLArray[line] = HTMLArray[line].replace("[GITHUB_CONTRIBUTORS]", GitHub_Contributors)
                     HTMLArray[line] = HTMLArray[line].replace("[DISCORD_LINK]", Discord)
                     HTMLArray[line] = HTMLArray[line].replace("[THEME]", SNDL_Theme)
                     HTMLArray[line] = HTMLArray[line].replace("[EMBED_COLOR]", Embed_Color)
-                    HTMLArray[line] = HTMLArray[line].replace("[STORE_PAGE_FILENAME]", Store_Page_Name)
+                    HTMLArray[line] = HTMLArray[line].replace("../[STORE_PAGE_FILENAME]", f"../{Store_Page_Name}")
                     HTMLArray[line] = HTMLArray[line].replace("[FOLDER_NAME]", Folder_Name)
                     HTMLArray[line] = HTMLArray[line].replace("[EMBED_FILENAME]", Embed_FileName)
-                    HTMLArray[line] = HTMLArray[line].replace("[STORE_EMBED_FILENAME]", Store_Embed_FileName)
+                    HTMLArray[line] = HTMLArray[line].replace("[STORE_BANNER]", Store_Banner)
                     HTMLArray[line] = HTMLArray[line].replace("[STORE_USER_FOLDER]", UserFolderName)
                     HTMLArray[line] = HTMLArray[line].replace("[FLASHSTORE_API-EMBEDS]", MoreByCode)
                     EditHTML_File.write(HTMLArray[line])
