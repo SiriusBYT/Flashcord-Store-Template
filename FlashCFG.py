@@ -6,17 +6,20 @@ This tool lets you quickly configure your page in a hurry.
 Read https://github.com/SiriusBYT/Flashcord/wiki/The-Flashcord-Store-Template for how this file works.
 
 WARNING: If you are quickly generating a page from a Replugged Addon's manifest JSON,
-Make SURE to first run "ManifestHooker.py" and then manually verify the information inside the generated "FlashCFG_ManifestHooker.json" file.
-Then you can rename the generated JSON file to simply "FlashCFG.json" and THEN you can ultimately finally run this script.
-"""
+Make SURE to complete the JSON keys:
+    - [internal_name]
+    - [discord_link]
 
-# Edit the following things
-AllowAPI = True # Allows the script to connect to the SGN servers in order to make your store page more complete without user input
+This allows the script to connect to the SGN servers in order to make your store page more complete without user input
+It's now probably not a good idea to disable this.
+"""
+AllowAPI = True 
+
 
 with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG:
     FlashCFG_JSON = json.load(FlashCFG)
     Name = FlashCFG_JSON["name"]
-    Long_Description = FlashCFG_JSON["long_description"]
+    with open("FlashCFG.html", "r", encoding="utf-8") as LongDesc_HTML: Long_Description = LongDesc_HTML.read()
     Short_Description = FlashCFG_JSON["short_description"]
     Version = FlashCFG_JSON["version"]
     GitHub_Profile = FlashCFG_JSON["author"]
@@ -36,11 +39,14 @@ with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG:
     Discord = FlashCFG_JSON["discord_link"]
     SNDL_Theme = FlashCFG_JSON["sndl_theme"]
     Embed_Color = FlashCFG_JSON["embed_color"]
+    doBackup = FlashCFG_JSON["backup_files"]
+    useManifestHooker = FlashCFG_JSON["use_manifest_hooker"]
 
     GitHub_RepoID = GitHub_Repo.split("/")
     GitHub_RepoID = GitHub_RepoID[-1]
 
     #print(f"DATA LOADED: {Name} \n{Long_Description}\n {Short_Description} {Version} {GitHub_Profile} {GitHub_Contributors} {GitHub_Repo} {Store_Embed_FileName} {Embed_FileName} {License} {License_Year} {isRepluggedPlugin} {isFlashcordCompetitor} {areIMGsFullLinks} {Folder_Name} {Store_Page_Name} {Discord} {SNDL_Theme} {Embed_Color}")
+
 
 
 
@@ -57,6 +63,65 @@ EmbedTemplate = "flashcord/store/templates/default/default-embed_template.html"
 HTMLFile = ""
 # Don't touch this either. This will cause problems if your store page is for a Flashcord Module!
 UserFolderName = GitHub_Profile.lower()
+
+def ManifestHooker():
+    with open("manifest.json", "r", encoding="utf8") as Manifest:
+        Manifest_JSON = json.load(Manifest)
+    # Now's the time to copy paste code from the closed source "Flashplug" script MUHAHAHA
+    Addon_Name = Manifest_JSON["name"]
+    Addon_Description = Manifest_JSON["description"]
+    Addon_Version = Manifest_JSON["version"]
+    Addon_AuthorKey = Manifest_JSON["author"]
+    try:
+        Addon_Author = Addon_AuthorKey["github"]
+        Addon_Contributors = "None"
+    except:
+        Addon_Contributors = []
+        for subcycle in range (len(Addon_AuthorKey)):
+            if subcycle == 1:
+                Addon_AuthorSubKey = Addon_AuthorKey[subcycle]
+                Addon_Author = Addon_AuthorSubKey["name"]
+            else:
+                Addon_AuthorSubKey = Addon_AuthorKey[subcycle]
+                Addon_Contributors.append(Addon_AuthorSubKey["name"])
+    try:
+        Addon_ImageKey = Manifest_JSON["image"]
+        if Addon_ImageKey[0] == "h": Addon_Image = Manifest_JSON["image"]
+        else: Addon_Image = Addon_ImageKey[0]
+    except: Addon_Image = "https://sirio-network.com/sbin/This is fine.png"
+    try: Addon_GitHubRepo = Manifest_JSON["source"]
+    except: Addon_GitHubRepo = "https://sirio-network.com/404"
+    Addon_License = Manifest_JSON["license"]
+    isFlashcordCompetitor = False; isRepluggedPlugin = False
+    if Manifest_JSON["type"] == "replugged-theme": isFlashcordCompetitor = True
+    else: isRepluggedPlugin = True
+    Addon_Contributors = str(Addon_Contributors)
+    Addon_Contributors = Addon_Contributors.replace("[","").replace("]","").replace("'","")
+
+
+    # Convert to Dictionary and then dump to FlashCFG.json
+    FlashCFG_JSON = {}
+    FlashCFG_JSON["name"] = Addon_Name
+    FlashCFG_JSON["short_description"] = Addon_Description
+    FlashCFG_JSON["version"] = Addon_Version
+    FlashCFG_JSON["author"] = Addon_Author
+    FlashCFG_JSON["contributors"] = Addon_Contributors
+    FlashCFG_JSON["github_repo"] = Addon_GitHubRepo
+    FlashCFG_JSON["img_store"] = Addon_Image
+    FlashCFG_JSON["img_embed"] = Addon_Image
+    FlashCFG_JSON["license"] = Addon_License
+    CTime = time.localtime()
+    FlashCFG_JSON["license_year"] = str(CTime.tm_year)
+
+    FlashCFG_JSON["is_rpplugin"] = isRepluggedPlugin
+    FlashCFG_JSON["is_rptheme"] = isFlashcordCompetitor
+    FlashCFG_JSON["images_are_full_links"] = True
+
+    FlashCFG_JSON["sndl_theme"] = "Light"
+    FlashCFG_JSON["embed_color"] = "#00AAFF"
+
+    with open("FlashCFG.json", "w", encoding="utf-8") as FlashCFG_ManifestHooker:
+        FlashCFG_ManifestHooker.write(json.dumps(FlashCFG_JSON, indent = 1))
 
 def GetEmbedCode():
     HTMLCode = ''
@@ -180,9 +245,8 @@ def HTMLConfigurator(Step):
 
 def FlashcordStoreConfig():
     print("[FlashCFG] Script initiated.")
-    FileBackup("Store Page")
+    if doBackup == True: FileBackup("Store Page"); FileBackup("Embed")
     HTMLConfigurator(0)
-    FileBackup("Embed")
     HTMLConfigurator(1)
     print("[FlashCFG] Script complete.")
     return
