@@ -15,55 +15,7 @@ It's now probably not a good idea to disable this.
 """
 AllowAPI = True 
 
-
-with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG:
-    FlashCFG_JSON = json.load(FlashCFG)
-    Name = FlashCFG_JSON["name"]
-    with open("FlashCFG.html", "r", encoding="utf-8") as LongDesc_HTML: Long_Description = LongDesc_HTML.read()
-    Short_Description = FlashCFG_JSON["short_description"]
-    Version = FlashCFG_JSON["version"]
-    GitHub_Profile = FlashCFG_JSON["author"]
-    GitHub_Contributors = FlashCFG_JSON["contributors"]
-    GitHub_Repo = FlashCFG_JSON["github_repo"]
-    Store_Embed_FileName = FlashCFG_JSON["img_store"]
-    Embed_FileName = FlashCFG_JSON["img_embed"]
-    License = FlashCFG_JSON["license"]
-    License_Year = FlashCFG_JSON["license_year"]
-
-    isRepluggedPlugin = FlashCFG_JSON["is_rpplugin"]
-    isFlashcordCompetitor = FlashCFG_JSON["is_rptheme"]
-    areIMGsFullLinks = FlashCFG_JSON["images_are_full_links"]
-
-    Folder_Name = f"{FlashCFG_JSON["internal_name"]}-files"
-    Store_Page_Name = f"{FlashCFG_JSON["internal_name"]}.html"
-    Discord = FlashCFG_JSON["discord_link"]
-    SNDL_Theme = FlashCFG_JSON["sndl_theme"]
-    Embed_Color = FlashCFG_JSON["embed_color"]
-    doBackup = FlashCFG_JSON["backup_files"]
-    useManifestHooker = FlashCFG_JSON["use_manifest_hooker"]
-
-    GitHub_RepoID = GitHub_Repo.split("/")
-    GitHub_RepoID = GitHub_RepoID[-1]
-
-    #print(f"DATA LOADED: {Name} \n{Long_Description}\n {Short_Description} {Version} {GitHub_Profile} {GitHub_Contributors} {GitHub_Repo} {Store_Embed_FileName} {Embed_FileName} {License} {License_Year} {isRepluggedPlugin} {isFlashcordCompetitor} {areIMGsFullLinks} {Folder_Name} {Store_Page_Name} {Discord} {SNDL_Theme} {Embed_Color}")
-
-
-
-
-# NOT recommended to modify, do this only if you know what you're doing! 
-if isRepluggedPlugin == True: StoreTemplate = "flashcord/store/templates/default/default-plugin_template.html"
-elif isFlashcordCompetitor == True: StoreTemplate = "flashcord/store/templates/default/default-theme_template.html"
-else: StoreTemplate = "flashcord/store/templates/default/default-module_template.html"
-
-if areIMGsFullLinks == False:
-    Store_Banner = f"{Folder_Name}/{Store_Embed_FileName}"
-
-EmbedTemplate = "flashcord/store/templates/default/default-embed_template.html"
-# Don't touch this, it will get overwritten anyways but still. Don't touch just in case.
-HTMLFile = ""
-# Don't touch this either. This will cause problems if your store page is for a Flashcord Module!
-UserFolderName = GitHub_Profile.lower()
-
+with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG: useManifestHooker = FlashCFG_JSON["use_manifest_hooker"]
 def ManifestHooker():
     with open("manifest.json", "r", encoding="utf8") as Manifest:
         Manifest_JSON = json.load(Manifest)
@@ -122,6 +74,54 @@ def ManifestHooker():
 
     with open("FlashCFG.json", "w", encoding="utf-8") as FlashCFG_ManifestHooker:
         FlashCFG_ManifestHooker.write(json.dumps(FlashCFG_JSON, indent = 1))
+if useManifestHooker == True: ManifestHooker()
+
+with open("FlashCFG.json", "r", encoding="utf-8") as FlashCFG:
+    FlashCFG_JSON = json.load(FlashCFG)
+    Name = FlashCFG_JSON["name"]
+    with open("FlashCFG.html", "r", encoding="utf-8") as LongDesc_HTML: Long_Description = LongDesc_HTML.read()
+    Short_Description = FlashCFG_JSON["short_description"]
+    Version = FlashCFG_JSON["version"]
+    GitHub_Profile = FlashCFG_JSON["author"]
+    GitHub_Contributors = FlashCFG_JSON["contributors"]
+    GitHub_Repo = FlashCFG_JSON["github_repo"]
+    Store_Embed_FileName = FlashCFG_JSON["img_store"]
+    Embed_FileName = FlashCFG_JSON["img_embed"]
+    License = FlashCFG_JSON["license"]
+    License_Year = FlashCFG_JSON["license_year"]
+
+    isRepluggedPlugin = FlashCFG_JSON["is_rpplugin"]
+    isFlashcordCompetitor = FlashCFG_JSON["is_rptheme"]
+    areIMGsFullLinks = FlashCFG_JSON["images_are_full_links"]
+
+    Folder_Name = f"{FlashCFG_JSON["internal_name"]}-files"
+    Store_Page_Name = f"{FlashCFG_JSON["internal_name"]}.html"
+    Discord = FlashCFG_JSON["discord_link"]
+    SNDL_Theme = FlashCFG_JSON["sndl_theme"]
+    Embed_Color = FlashCFG_JSON["embed_color"]
+    doBackup = FlashCFG_JSON["backup_files"]
+
+    GitHub_RepoID = GitHub_Repo.split("/")
+    GitHub_RepoID = GitHub_RepoID[-1]
+
+    #print(f"DATA LOADED: {Name} \n{Long_Description}\n {Short_Description} {Version} {GitHub_Profile} {GitHub_Contributors} {GitHub_Repo} {Store_Embed_FileName} {Embed_FileName} {License} {License_Year} {isRepluggedPlugin} {isFlashcordCompetitor} {areIMGsFullLinks} {Folder_Name} {Store_Page_Name} {Discord} {SNDL_Theme} {Embed_Color}")
+
+
+
+
+# NOT recommended to modify, do this only if you know what you're doing! 
+if isRepluggedPlugin == True: StoreTemplate = "flashcord/store/templates/default/default-plugin_template.html"
+elif isFlashcordCompetitor == True: StoreTemplate = "flashcord/store/templates/default/default-theme_template.html"
+else: StoreTemplate = "flashcord/store/templates/default/default-module_template.html"
+
+if areIMGsFullLinks == False:
+    Store_Banner = f"{Folder_Name}/{Store_Embed_FileName}"
+
+EmbedTemplate = "flashcord/store/templates/default/default-embed_template.html"
+# Don't touch this, it will get overwritten anyways but still. Don't touch just in case.
+HTMLFile = ""
+# Don't touch this either. This will cause problems if your store page is for a Flashcord Module!
+UserFolderName = GitHub_Profile.lower()
 
 def GetEmbedCode():
     HTMLCode = ''
